@@ -1,0 +1,39 @@
+.footer {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  padding: 20px;
+
+  a {
+    position: relative;
+    color: white; /* default */
+    text-decoration: none;
+    font-size: 16px;
+    padding-bottom: 3px;
+    display: inline-block;
+
+    /* prevent blue & purple links */
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      color: white;
+    }
+
+    /* underline wipe effect */
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background: white;
+      transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}

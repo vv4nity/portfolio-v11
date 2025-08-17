@@ -1,0 +1,104 @@
+.slidingImages {
+    display: flex;
+    flex-direction: column;
+    gap: 3vw;
+    position: relative;
+    margin-top: 200px;
+    background-color: white;
+    z-index: 1;
+    overflow: hidden; // ✅ prevent overflow on infinite loop
+
+    .slider {
+        display: flex;
+        position: relative;
+        gap: 3vw;
+        width: max-content; // ✅ allows infinite loop
+        left: -10vw;
+
+        .project {
+            width: 25%;
+            height: 20vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0; // ✅ avoid shrinking in loop
+
+            .imageContainer {
+                position: relative;
+                width: 80%;
+                height: 80%;
+
+                img {
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+
+    /* Circle part (kept from your code) */
+    .circleContainer {
+        background-color: red;
+        position: relative;
+        margin-top: 100px;
+
+        .circle {
+            height: 1550%;
+            width: 120%;
+            left: -10%;
+            border-radius: 0 0 50% 50%;
+            background-color: white;
+            z-index: 1;
+            position: absolute;
+            box-shadow: 0px 60px 50px rgba(0, 0, 0, 0.748);
+        }
+    }
+}
+
+/* ✅ Infinite Animations */
+@keyframes scrollLeft {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollRight {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(50%);
+    }
+}
+
+.leftToRight {
+    animation: scrollRight calc(var(--speed, 1) * 40s) linear infinite;
+}
+
+.rightToLeft {
+    animation: scrollLeft calc(var(--speed, 1) * 40s) linear infinite;
+}
+
+/* ✅ Responsive tweaks */
+@media (max-width: 1024px) {
+    .slidingImages .slider .project {
+        width: 35%;
+        height: 25vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .slidingImages .slider .project {
+        width: 45%;
+        height: 30vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .slidingImages .slider .project {
+        width: 60%;
+        height: 35vw;
+    }
+}
