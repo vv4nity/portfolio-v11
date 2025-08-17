@@ -40,7 +40,7 @@ export default function index() {
                 <div className={styles.name}>
                     <p className={styles.codeBy}>Code by</p>
                     <p className={styles.dennis}>Emanuel </p>
-                    <p className={styles.snellenberg}>  Jabon</p>
+                    <p className={styles.snellenberg}>    Jabon</p>
                 </div>
             </div>
             <div className={styles.nav}>
