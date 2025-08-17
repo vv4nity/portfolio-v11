@@ -9,24 +9,28 @@ import Rounded from '../../common/RoundedButton';
 
 const projects = [
   {
-    title: "C2 Montreal",
+    title: "Balai ni Juan",
     src: "c2montreal.png",
     color: "#000000"
+    link: "https://balai-ni-juan.vercel.app/"
   },
   {
-    title: "Office Studio",
+    title: "Eman's Grind Coffeeshop",
     src: "officestudio.png",
     color: "#8C8C8C"
+    link: "https://emans-grind-coffeeshop.netlify.app/"
   },
   {
-    title: "Locomotive",
+    title: "PUP Interactive Map",
     src: "locomotive.png",
     color: "#EFE8D3"
+    link: "https://pup-interactive-map.netlify.app/"
   },
   {
-    title: "Silencio",
+    title: "Calculator Website",
     src: "silencio.png",
     color: "#706D63"
+    link: "https://calculator-by-emanuel.netlify.app/"
   }
 ]
 
