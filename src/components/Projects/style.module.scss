@@ -1,12 +1,11 @@
 .projects {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;     // ✅ center content
+  padding-left: 200px;
+  padding-right: 200px;
+  flex-direction: column;
   margin-top: 300px;
-  padding: 0 200px;            // ✅ even left/right padding
 
-  /* Body wrapper */
   .body {
     max-width: 1400px;
     width: 100%;
@@ -17,19 +16,6 @@
     margin-bottom: 100px;
   }
 
-  /* Title Links */
-  .projectLink {
-    text-decoration: none; // remove underline
-    color: inherit;        // keep text color consistent
-    display: block;
-    width: 100%;
-
-    &:hover {
-      color: inherit; // ✅ prevent blue hover
-    }
-  }
-
-  /* Modal Preview */
   .modalContainer {
     height: 350px;
     width: 400px;
@@ -40,9 +26,6 @@
     pointer-events: none;
     overflow: hidden;
     z-index: 3;
-
-    /* ✅ keep it perfectly centered */
-    transform: translate(-50%, -50%);
   }
 
   .modalSlider {
@@ -62,11 +45,8 @@
 
   .modal img {
     height: auto;
-    max-width: 100%;
-    object-fit: contain;
   }
 
-  /* Cursor */
   .cursor,
   .cursorLabel {
     width: 80px;
@@ -88,46 +68,13 @@
     background-color: transparent;
   }
 
-  /* Cursor links */
-  .cursorLink {
-    text-decoration: none;
-    color: white; // ✅ match cursor text
-  }
+  /* ✅ Fix hyperlink styles inside projects */
+  a {
+    text-decoration: none; // remove underline
+    color: inherit;        // no blue on some browsers
 
-  /* 🔹 Responsive Adjustments */
-  @media (max-width: 1200px) {
-    padding: 0 100px;
-  }
-
-  @media (max-width: 768px) {
-    padding: 0 40px;
-
-    .modalContainer {
-      height: 250px;
-      width: 300px;
-    }
-
-    .cursor,
-    .cursorLabel {
-      width: 60px;
-      height: 60px;
-      font-size: 12px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    padding: 0 20px;
-
-    .modalContainer {
-      height: 200px;
-      width: 250px;
-    }
-
-    .cursor,
-    .cursorLabel {
-      width: 50px;
-      height: 50px;
-      font-size: 11px;
+    &:hover {
+      color: inherit; // keep same color on hover
     }
   }
 }
