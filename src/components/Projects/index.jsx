@@ -11,25 +11,25 @@ const projects = [
   {
     title: "Balai ni Juan",
     src: "c2montreal.png",
-    color: "#000000"
+    color: "#000000",
     link: "https://balai-ni-juan.vercel.app/"
   },
   {
     title: "Eman's Grind Coffeeshop",
     src: "officestudio.png",
-    color: "#8C8C8C"
+    color: "#8C8C8C",
     link: "https://emans-grind-coffeeshop.netlify.app/"
   },
   {
     title: "PUP Interactive Map",
     src: "locomotive.png",
-    color: "#EFE8D3"
+    color: "#EFE8D3",
     link: "https://pup-interactive-map.netlify.app/"
   },
   {
     title: "Calculator Website",
     src: "silencio.png",
-    color: "#706D63"
+    color: "#706D63",
     link: "https://calculator-by-emanuel.netlify.app/"
   }
 ]
