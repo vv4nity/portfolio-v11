@@ -23,10 +23,20 @@
     .name {
       display: flex;
       align-items: baseline;
-      gap: 0.3em; // space between "Emanuel" and "Jabon"
+      gap: 0.3em; // spacing between Emanuel and Jabon
       margin-left: 5px;
       white-space: nowrap;
       transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+
+      .codeByWrapper {
+        position: relative;
+        overflow: hidden; // keeps masking for Code by
+        width: fit-content;
+
+        .codeBy {
+          transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+      }
 
       p {
         position: relative;
@@ -43,7 +53,7 @@
         padding-right: 30px;
 
         .codeBy {
-          transform: translateX(-100%);
+          transform: translateX(-100%); // masked slide out
         }
 
         .dennis {
