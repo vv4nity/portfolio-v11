@@ -15,7 +15,16 @@
         justify-content: center;
         margin-bottom: 100px;
     }
-    
+    .projectLink {
+      text-decoration: none; // no underline
+      color: inherit;        // prevent default blue link color
+      width: 100%;
+      display: block;
+
+      &:hover {
+        color: inherit; // keep same color on hover
+      }
+    }
     .modalContainer{
         height: 350px;
         width: 400px;
