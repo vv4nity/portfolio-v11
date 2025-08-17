@@ -1,32 +1,32 @@
 .projects {
   display: flex;
   align-items: center;
-  justify-content: center; // ✅ center horizontally
   flex-direction: column;
   margin-top: 300px;
-  padding: 0 200px;
+  padding-left: 200px;
+  padding-right: 200px;
 
   .body {
     max-width: 1400px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; // ✅ center titles
+    align-items: center;   // ✅ keep centered
     justify-content: center;
     margin-bottom: 100px;
   }
 
   /* Project Links */
   .projectLink {
-    text-decoration: none; // remove underline
-    color: inherit;        // keep text color
+    text-decoration: none;
+    color: inherit;
     display: block;
     width: 100%;
     text-align: center;
 
     &:hover {
-      text-decoration: none; // still no underline
-      color: inherit;        // no blue hover
+      text-decoration: none;
+      color: inherit;
     }
   }
 
@@ -41,6 +41,7 @@
     pointer-events: none;
     overflow: hidden;
     z-index: 3;
+    transform: translate(-50%, -50%);
   }
 
   .modalSlider {
@@ -56,13 +57,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
+    color: inherit;
   }
 
   .modal img {
     height: auto;
   }
 
-  /* Cursor Blue Circle */
+  /* Cursor Circle */
   .cursor {
     width: 80px;
     height: 80px;
@@ -73,30 +76,34 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none; // cannot block click
+    pointer-events: none;
   }
 
-  /* Cursor View Text */
+  /* Cursor Label with link */
   .cursorLabel {
     width: 80px;
     height: 80px;
     border-radius: 50%;
     background-color: transparent;
-    color: white;
     position: fixed;
-    z-index: 4; // above circle
+    z-index: 4;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
-    font-weight: 300;
-    text-decoration: none;
-    pointer-events: auto; // allow clicking
-    cursor: pointer;
+    pointer-events: none;
 
-    &:hover {
-      color: white; // keep same
+    .cursorLink {
+      color: white;
+      font-size: 14px;
+      font-weight: 300;
       text-decoration: none;
+      pointer-events: auto; // ✅ makes link clickable
+      cursor: pointer;
+
+      &:hover {
+        color: white;
+        text-decoration: none;
+      }
     }
   }
 }
