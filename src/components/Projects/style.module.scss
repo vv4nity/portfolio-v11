@@ -1,11 +1,12 @@
 .projects {
   display: flex;
   flex-direction: column;
-  align-items: center;   // ✅ centers horizontally
-  justify-content: center;
+  align-items: center;
+  justify-content: center;     // ✅ center content
   margin-top: 300px;
-  padding: 0 200px;      // ✅ keeps even spacing on both sides
+  padding: 0 200px;            // ✅ even left/right padding
 
+  /* Body wrapper */
   .body {
     max-width: 1400px;
     width: 100%;
@@ -16,6 +17,19 @@
     margin-bottom: 100px;
   }
 
+  /* Title Links */
+  .projectLink {
+    text-decoration: none; // remove underline
+    color: inherit;        // keep text color consistent
+    display: block;
+    width: 100%;
+
+    &:hover {
+      color: inherit; // ✅ prevent blue hover
+    }
+  }
+
+  /* Modal Preview */
   .modalContainer {
     height: 350px;
     width: 400px;
@@ -26,7 +40,9 @@
     pointer-events: none;
     overflow: hidden;
     z-index: 3;
-    transform: translate(-50%, -50%); // ✅ makes it truly centered
+
+    /* ✅ keep it perfectly centered */
+    transform: translate(-50%, -50%);
   }
 
   .modalSlider {
@@ -46,14 +62,17 @@
 
   .modal img {
     height: auto;
+    max-width: 100%;
+    object-fit: contain;
   }
 
+  /* Cursor */
   .cursor,
   .cursorLabel {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #455ce9;
+    background-color: #455CE9;
     color: white;
     position: fixed;
     z-index: 3;
@@ -67,5 +86,48 @@
 
   .cursorLabel {
     background-color: transparent;
+  }
+
+  /* Cursor links */
+  .cursorLink {
+    text-decoration: none;
+    color: white; // ✅ match cursor text
+  }
+
+  /* 🔹 Responsive Adjustments */
+  @media (max-width: 1200px) {
+    padding: 0 100px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 40px;
+
+    .modalContainer {
+      height: 250px;
+      width: 300px;
+    }
+
+    .cursor,
+    .cursorLabel {
+      width: 60px;
+      height: 60px;
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 20px;
+
+    .modalContainer {
+      height: 200px;
+      width: 250px;
+    }
+
+    .cursor,
+    .cursorLabel {
+      width: 50px;
+      height: 50px;
+      font-size: 11px;
+    }
   }
 }
