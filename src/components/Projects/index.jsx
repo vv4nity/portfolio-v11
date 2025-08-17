@@ -9,41 +9,37 @@ import Rounded from '../../common/RoundedButton';
 
 const projects = [
   {
-    title: "Balai ni Juan",
+    title: "C2 Montreal",
     src: "c2montreal.png",
-    color: "#000000",
-    link: "https://balai-ni-juan.vercel.app/"
+    color: "#000000"
   },
   {
-    title: "Eman's Grind Coffeeshop",
+    title: "Office Studio",
     src: "officestudio.png",
-    color: "#8C8C8C",
-    link: "https://emans-grind-coffeeshop.netlify.app/"
+    color: "#8C8C8C"
   },
   {
-    title: "PUP Interactive Map",
+    title: "Locomotive",
     src: "locomotive.png",
-    color: "#EFE8D3",
-    link: "https://pup-interactive-map.netlify.app/"
+    color: "#EFE8D3"
   },
   {
-    title: "Calculator Website",
+    title: "Silencio",
     src: "silencio.png",
-    color: "#6a6863ff",
-    link: "https://calculator-by-emanuel.netlify.app/"
+    color: "#706D63"
   }
-];
+]
 
 const scaleAnimation = {
-  initial: { scale: 0, x:"-50%", y:"-50%" },
-  enter: { scale: 1, x:"-50%", y:"-50%", transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] }},
-  closed: { scale: 0, x:"-50%", y:"-50%", transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] }}
-};
+    initial: {scale: 0, x:"-50%", y:"-50%"},
+    enter: {scale: 1, x:"-50%", y:"-50%", transition: {duration: 0.4, ease: [0.76, 0, 0.24, 1]}},
+    closed: {scale: 0, x:"-50%", y:"-50%", transition: {duration: 0.4, ease: [0.32, 0, 0.67, 0]}}
+}
 
 export default function Home() {
-  const [modal, setModal] = useState({active: false, index: 0});
-  const { active, index } = modal;
 
+  const [modal, setModal] = useState({active: false, index: 0})
+  const { active, index } = modal;
   const modalContainer = useRef(null);
   const cursor = useRef(null);
   const cursorLabel = useRef(null);
@@ -55,7 +51,7 @@ export default function Home() {
   let xMoveCursorLabel = useRef(null);
   let yMoveCursorLabel = useRef(null);
 
-  useEffect(() => {
+  useEffect( () => {
     //Move Container
     xMoveContainer.current = gsap.quickTo(modalContainer.current, "left", {duration: 0.8, ease: "power3"})
     yMoveContainer.current = gsap.quickTo(modalContainer.current, "top", {duration: 0.8, ease: "power3"})
@@ -75,98 +71,44 @@ export default function Home() {
     xMoveCursorLabel.current(x)
     yMoveCursorLabel.current(y)
   }
-
   const manageModal = (active, index, x, y) => {
     moveItems(x, y)
     setModal({active, index})
   }
 
   return (
-    <main 
-      onMouseMove={(e) => { moveItems(e.clientX, e.clientY) }} 
-      className={styles.projects}
-    >
-      <div className={styles.body}>
-        {projects.map((project, idx) => (
-          <a 
-            key={idx} 
-            href={project.link} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className={styles.projectLink}
-          >
-            <Project 
-              index={idx} 
-              title={project.title} 
-              manageModal={manageModal} 
-            />
-          </a>
-        ))}
-      </div>
-
-      <Rounded>
-        <p>More work</p>
-      </Rounded>
-
-      {/* Modal Preview */}
-      <>
-        <motion.div 
-          ref={modalContainer} 
-          variants={scaleAnimation} 
-          initial="initial" 
-          animate={active ? "enter" : "closed"} 
-          className={styles.modalContainer}
-        >
-          <div style={{top: index * -100 + "%"}} className={styles.modalSlider}>
-            {projects.map((project, idx) => {
-              const { src, color } = project
-              return (
-                <div 
-                  className={styles.modal} 
-                  style={{backgroundColor: color}} 
-                  key={`modal_${idx}`}
-                >
-                  <Image 
+  <main onMouseMove={(e) => {moveItems(e.clientX, e.clientY)}} className={styles.projects}>
+    <div className={styles.body}>
+      {
+        projects.map( (project, index) => {
+          return <Project index={index} title={project.title} manageModal={manageModal} key={index}/>
+        })
+      }
+    </div>
+    <Rounded>
+      <p>More work</p>
+    </Rounded>
+    <>
+        <motion.div ref={modalContainer} variants={scaleAnimation} initial="initial" animate={active ? "enter" : "closed"} className={styles.modalContainer}>
+            <div style={{top: index * -100 + "%"}} className={styles.modalSlider}>
+            {
+                projects.map( (project, index) => {
+                const { src, color } = project
+                return <div className={styles.modal} style={{backgroundColor: color}} key={`modal_${index}`}>
+                    <Image 
                     src={`/images/${src}`}
                     width={300}
                     height={0}
                     alt="image"
-                  />
+                    />
                 </div>
-              )
-            })}
-          </div>
+                })
+            }
+            </div>
         </motion.div>
-
-        {/* Cursor */}
-        <motion.div 
-          ref={cursor} 
-          className={styles.cursor} 
-          variants={scaleAnimation} 
-          initial="initial" 
-          animate={active ? "enter" : "closed"} 
-        ></motion.div>
-
-        {/* Cursor Label with Link */}
-        <motion.div 
-          ref={cursorLabel} 
-          className={styles.cursorLabel} 
-          variants={scaleAnimation} 
-          initial="initial" 
-          animate={active ? "enter" : "closed"} 
-        >
-          {active && (
-            <a 
-              href={projects[index].link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className={styles.cursorLink}
-            >
-              View
-            </a>
-          )}
-        </motion.div>
-      </>
-    </main>
+        <motion.div ref={cursor} className={styles.cursor} variants={scaleAnimation} initial="initial" animate={active ? "enter" : "closed"}></motion.div>
+        <motion.div ref={cursorLabel} className={styles.cursorLabel} variants={scaleAnimation} initial="initial" animate={active ? "enter" : "closed"}>View</motion.div>
+    </>
+  </main>
   )
 }
