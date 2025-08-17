@@ -23,7 +23,6 @@ export default function Footer() {
         >
           LinkedIn
         </a>
-      </Magnetic>
     </div>
   );
 }
