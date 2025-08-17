@@ -41,7 +41,6 @@ const scaleAnimation = {
 }
 
 export default function Home() {
-
   const [modal, setModal] = useState({active: false, index: 0})
   const { active, index } = modal;
   const modalContainer = useRef(null);
@@ -55,7 +54,7 @@ export default function Home() {
   let xMoveCursorLabel = useRef(null);
   let yMoveCursorLabel = useRef(null);
 
-  useEffect( () => {
+  useEffect(() => {
     //Move Container
     xMoveContainer.current = gsap.quickTo(modalContainer.current, "left", {duration: 0.8, ease: "power3"})
     yMoveContainer.current = gsap.quickTo(modalContainer.current, "top", {duration: 0.8, ease: "power3"})
@@ -75,44 +74,78 @@ export default function Home() {
     xMoveCursorLabel.current(x)
     yMoveCursorLabel.current(y)
   }
+
   const manageModal = (active, index, x, y) => {
     moveItems(x, y)
     setModal({active, index})
   }
 
-  return (
-  <main onMouseMove={(e) => {moveItems(e.clientX, e.clientY)}} className={styles.projects}>
-    <div className={styles.body}>
-      {
-        projects.map( (project, index) => {
-          return <Project index={index} title={project.title} manageModal={manageModal} key={index}/>
-        })
+  const handleClick = () => {
+    if (active) {
+      const project = projects[index];
+      if (project?.link) {
+        window.open(project.link, "_blank"); // open link on hover "View"
       }
-    </div>
-    <Rounded>
-      <p>More work</p>
-    </Rounded>
-    <>
-        <motion.div ref={modalContainer} variants={scaleAnimation} initial="initial" animate={active ? "enter" : "closed"} className={styles.modalContainer}>
-            <div style={{top: index * -100 + "%"}} className={styles.modalSlider}>
-            {
-                projects.map( (project, index) => {
-                const { src, color } = project
-                return <div className={styles.modal} style={{backgroundColor: color}} key={`modal_${index}`}>
-                    <Image 
+    }
+  }
+
+  return (
+    <main onMouseMove={(e) => {moveItems(e.clientX, e.clientY)}} className={styles.projects}>
+      <div className={styles.body}>
+        {projects.map((project, index) => (
+          <Project 
+            index={index} 
+            title={project.title} 
+            manageModal={manageModal} 
+            key={index}
+          />
+        ))}
+      </div>
+      <Rounded>
+        <p>More work</p>
+      </Rounded>
+      <>
+        <motion.div 
+          ref={modalContainer} 
+          variants={scaleAnimation} 
+          initial="initial" 
+          animate={active ? "enter" : "closed"} 
+          className={styles.modalContainer}
+        >
+          <div style={{top: index * -100 + "%"}} className={styles.modalSlider}>
+            {projects.map((project, index) => {
+              const { src, color } = project
+              return (
+                <div className={styles.modal} style={{backgroundColor: color}} key={`modal_${index}`}>
+                  <Image 
                     src={`/images/${src}`}
                     width={300}
                     height={0}
                     alt="image"
-                    />
+                  />
                 </div>
-                })
-            }
-            </div>
+              )
+            })}
+          </div>
         </motion.div>
-        <motion.div ref={cursor} className={styles.cursor} variants={scaleAnimation} initial="initial" animate={active ? "enter" : "closed"}></motion.div>
-        <motion.div ref={cursorLabel} className={styles.cursorLabel} variants={scaleAnimation} initial="initial" animate={active ? "enter" : "closed"}>View</motion.div>
-    </>
-  </main>
+        <motion.div 
+          ref={cursor} 
+          className={styles.cursor} 
+          variants={scaleAnimation} 
+          initial="initial" 
+          animate={active ? "enter" : "closed"} 
+          onClick={handleClick} // clickable "View" cursor
+        />
+        <motion.div 
+          ref={cursorLabel} 
+          className={styles.cursorLabel} 
+          variants={scaleAnimation} 
+          initial="initial" 
+          animate={active ? "enter" : "closed"}
+        >
+          View
+        </motion.div>
+      </>
+    </main>
   )
 }
