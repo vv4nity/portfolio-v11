@@ -11,26 +11,26 @@
   box-sizing: border-box;
   align-items: center;
 
+  /* === LOGO === */
   .logo {
     display: flex;
     cursor: pointer;
 
     p {
-      margin: 0px;
+      margin: 0;
       transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
     }
 
     .name {
       display: flex;
       align-items: baseline;
-      gap: 0.3em; // spacing between Emanuel and Jabon
+      gap: 0.3em;
       margin-left: 5px;
       white-space: nowrap;
-      transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 
       .codeByWrapper {
         position: relative;
-        overflow: hidden; // keeps masking for Code by
+        overflow: hidden; // keeps "Code by" masked
         width: fit-content;
 
         .codeBy {
@@ -38,9 +38,20 @@
         }
       }
 
-      p {
+      .dennis {
+        // "Emanuel" always visible
         position: relative;
         transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+      }
+
+      .snellenberg {
+        // "Jabon" hidden by default
+        position: relative;
+        overflow: hidden;
+        max-width: 0;
+        opacity: 0;
+        transform: translateX(20px); // slide effect from right
+        transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
       }
     }
 
@@ -53,20 +64,19 @@
         padding-right: 30px;
 
         .codeBy {
-          transform: translateX(-100%); // masked slide out
-        }
-
-        .dennis {
-          transform: translateX(-65px);
+          transform: translateX(-100%); // slide "Code by" out
         }
 
         .snellenberg {
-          transform: translateX(-65px);
+          max-width: 200px;   // reveal "Jabon"
+          opacity: 1;
+          transform: translateX(0); // slides into place
         }
       }
     }
   }
 
+  /* === NAVIGATION === */
   .nav {
     display: flex;
     align-items: center;
@@ -104,10 +114,11 @@
   }
 }
 
+/* === BURGER MENU BUTTON === */
 .headerButtonContainer {
   transform: scale(0);
   position: fixed;
-  right: 0px;
+  right: 0;
   z-index: 4;
 
   .button {
@@ -157,7 +168,7 @@
 
     &::before {
       transform: rotate(-45deg);
-      top: 0px;
+      top: 0;
     }
   }
 }
