@@ -27,10 +27,11 @@
       gap: 0.3em;
       margin-left: 5px;
       white-space: nowrap;
+      transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 
       .codeByWrapper {
         position: relative;
-        overflow: hidden; // keeps "Code by" masked
+        overflow: hidden;
         width: fit-content;
 
         .codeBy {
@@ -39,18 +40,16 @@
       }
 
       .dennis {
-        // "Emanuel" always visible
         position: relative;
         transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
       }
 
       .snellenberg {
-        // "Jabon" hidden by default
         position: relative;
         overflow: hidden;
         max-width: 0;
         opacity: 0;
-        transform: translateX(20px); // slide effect from right
+        transform: translateX(20px);
         transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
       }
     }
@@ -61,16 +60,16 @@
       }
 
       .name {
-        padding-right: 30px;
+        transform: translateX(-30px); // pushes "Emanuel Jabon" closer to ©
 
         .codeBy {
-          transform: translateX(-100%); // slide "Code by" out
+          transform: translateX(-100%);
         }
 
         .snellenberg {
-          max-width: 200px;   // reveal "Jabon"
+          max-width: 200px;
           opacity: 1;
-          transform: translateX(0); // slides into place
+          transform: translateX(0);
         }
       }
     }
